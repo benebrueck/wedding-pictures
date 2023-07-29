@@ -3,7 +3,8 @@ import React, { useState, useRef } from "react";
 import { storage } from "./firebase";
 import { ref, uploadBytes} from "firebase/storage";
 import { Camera } from "react-camera-pro";
-import { v4 } from "uuid";
+// import { v1 } from "uuid";
+import { format } from "date-fns"
 
 const Component = () => {
   function base64ToFile(base64String, fileName) {
@@ -36,20 +37,22 @@ const Component = () => {
     // if (image==null) return;
     setImage(camera.current.takePhoto())
     // Speicherort
-    const imageRef = ref(storage,`test1/${ v4() }`);
     
-    uploadBytes(imageRef,base64ToFile(image,"picture")).then(()=>{
-      alert("Bild hochgeladen")
-    });
+    const time = format(new Date(),'ddMMyyhhmmss')
+    
+    const rand = Math.floor(1000 + 9000 * Math.random());
+    const fileend = ".jpeg"
+    const imageRef = ref(storage,`test1/${ time + rand + fileend}`);
+    uploadBytes(imageRef,base64ToFile(image,"bild"))
   }
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={1/1}/>
+      <Camera ref={camera} aspectRatio={3/4}/>
       <button onClick={uploadImage}>Take photo</button>
       <button onClick={()=> camera.current.switchCamera()}>Switch Camera</button>
     </div>
   );
 }
 
-export default Component;
+export default Component;  
