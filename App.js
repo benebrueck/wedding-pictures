@@ -46,7 +46,7 @@ const Component = () => {
       <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button>
       <button onClick={()=> camera.current.switchCamera()}>Switch Camera</button>
       <button onClick={uploadImage}>Upload photo</button>
-      <input></input>
+      moin
     </div>
   );
 }
