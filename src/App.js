@@ -36,8 +36,7 @@ const Component = () => {
     // if (image==null) return;
     setImage(camera.current.takePhoto())
     // Speicherort
-    picture_name = "picture";
-    const imageRef = ref(storage,`test1/${picture_name + v4}`);
+    const imageRef = ref(storage,`test1/${image.name + v4}`);
     
     uploadBytes(imageRef,base64ToFile(image,image.name));
   }
