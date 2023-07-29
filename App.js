@@ -33,19 +33,22 @@ const Component = () => {
   const [image, setImage] = useState(null);
 
   const uploadImage = () =>{
-    if (image==null) return;
+    // if (image==null) return;
+    setImage(camera.current.takePhoto())
     // Speicherort
-    const imageRef = ref(storage,`test1/${v4}`);
+    picture_name = "picture";
+    const imageRef = ref(storage,`test1/${picture_name + v4}`);
     
     uploadBytes(imageRef,base64ToFile(image,image.name));
   }
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={9/16}/>
-      <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button>
+      <Camera ref={camera}/>
+      {/* <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button> */}
+      <button onClick={uploadImage}>Take photo</button>
       <button onClick={()=> camera.current.switchCamera()}>Switch Camera</button>
-      <button onClick={uploadImage}>Upload photo</button>
+      {/* <button onClick={uploadImage}>Upload photo</button> */}
       moin
     </div>
   );
