@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Image as Button</title>
+  <style>
+    /* Stil für das Hauptobjekt (DIV) */
+    .container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background-color: lightgray;
+      margin: 100px auto;
+    }
+
+    /* Stil für den weißen Punkt (Button) */
+    .white-dot {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: url("switch cam.png") no-repeat center center / contain; /* Hinzufügen der Hintergrundbild-URL */
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Inhalt deines DIV-Objekts -->
+    <!-- Zum Beispiel: <p>Hallo, hier ist ein DIV-Objekt.</p> -->
+    <button class="white-dot"></button>
+  </div>
+</body>
+</html>

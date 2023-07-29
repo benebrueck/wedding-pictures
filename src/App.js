@@ -48,9 +48,11 @@ const Component = () => {
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={3/4}/>
-      <button onClick={uploadImage}>Take photo</button>
-      <button onClick={()=> camera.current.switchCamera()}>Switch Camera</button>
+      <Camera ref={camera} />
+      <button onClick={uploadImage} className='dot'></button>
+      <button onClick={()=> camera.current.switchCamera()} className='img'></button>
+  
+      
     </div>
   );
 }
