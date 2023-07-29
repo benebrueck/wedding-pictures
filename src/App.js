@@ -49,8 +49,8 @@ const Component = () => {
   return (
     <div>
       <Camera ref={camera} />
-      <button onClick={uploadImage}></button>
-      <button onClick={()=> camera.current.switchCamera()}></button>
+      <button onClick={uploadImage} className='dot'></button>
+      <button onClick={()=> camera.current.switchCamera()} className='img'></button>
     </div>
   );
 }
