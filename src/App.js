@@ -38,7 +38,9 @@ const Component = () => {
     // Speicherort
     const imageRef = ref(storage,`test1/${ v4() }`);
     
-    uploadBytes(imageRef,base64ToFile(image,"picture"));
+    uploadBytes(imageRef,base64ToFile(image,"picture")).then(()=>{
+      alert("Bild hochgeladen")
+    });
   }
 
   return (
