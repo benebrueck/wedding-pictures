@@ -42,7 +42,7 @@ const Component = () => {
     
     const rand = Math.floor(1000 + 9000 * Math.random());
     const fileend = ".jpeg"
-    const imageRef = ref(storage,`test1/${ time + rand + fileend}`);
+    const imageRef = ref(storage,`test1/${ time + rand}`);
     uploadBytes(imageRef,base64ToFile(image,"bild"))
   }
 

@@ -9,6 +9,11 @@
 html, body, #app, #app>div {
   height: 100%
 }
+
+body{
+  background-color: #282c34;
+  overflow: hidden;
+}
 .Container {
   display: flex;
   flex-direction: column;
