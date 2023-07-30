@@ -36,10 +36,8 @@ const Component = () => {
 
   const uploadImage = () =>{
     // if (image==null) return;
-    setImage(camera.current.takePhoto()).then(() => {
-      console.log("Picture taken");
+    setImage(camera.current.takePhoto())
       alert("Foto gemacht")
-    });
     // Speicherort
     
     const time = format(new Date(),'ddMMyyhhmmss')
@@ -52,7 +50,7 @@ const Component = () => {
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={9/16}/>
+      <Camera ref={camera} aspectRatio={3/4}/>
       <button onClick={uploadImage} className='dot'></button>
       <button onClick={()=> camera.current.switchCamera()} className='img'></button>
     </div>
