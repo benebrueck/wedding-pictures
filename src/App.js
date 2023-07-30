@@ -5,6 +5,7 @@ import { ref, uploadBytes} from "firebase/storage";
 import { Camera } from "react-camera-pro";
 // import { v1 } from "uuid";
 import { format } from "date-fns"
+import { wait } from '@testing-library/user-event/dist/utils';
 
 const Component = () => {
   function base64ToFile(base64String, fileName) {
@@ -35,7 +36,10 @@ const Component = () => {
 
   const uploadImage = () =>{
     // if (image==null) return;
-    setImage(camera.current.takePhoto())
+    setImage(camera.current.takePhoto()).then(() => {
+      console.log("Picture taken");
+      wait(10)
+    });
     // Speicherort
     
     const time = format(new Date(),'ddMMyyhhmmss')
