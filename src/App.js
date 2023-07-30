@@ -38,7 +38,7 @@ const Component = () => {
     // if (image==null) return;
     setImage(camera.current.takePhoto()).then(() => {
       console.log("Picture taken");
-      wait(10)
+      alert("Foto gemacht")
     });
     // Speicherort
     
