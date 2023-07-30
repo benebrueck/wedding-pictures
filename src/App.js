@@ -3,9 +3,7 @@ import React, { useState, useRef } from "react";
 import { storage } from "./firebase";
 import { ref, uploadBytes} from "firebase/storage";
 import { Camera } from "react-camera-pro";
-// import { v1 } from "uuid";
 import { format } from "date-fns"
-import { wait } from '@testing-library/user-event/dist/utils';
 
 const Component = () => {
   function base64ToFile(base64String, fileName) {
@@ -37,10 +35,11 @@ const Component = () => {
   const uploadImage = () =>{
     // if (image==null) return;
     setImage(camera.current.takePhoto())
-      alert("Foto gemacht")
+
+    alert("Foto gemacht!")
     // Speicherort
     
-    const time = format(new Date(),'ddMMyyhhmmss')
+    const time = format(new Date(),'yyMMddhhmmss')
     
     const rand = Math.floor(1000 + 9000 * Math.random());
     const fileend = ".jpeg"
@@ -50,7 +49,7 @@ const Component = () => {
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={3/4}/>
+      <Camera ref={camera} aspectRatio={9/16}/>
       <button onClick={uploadImage} className='dot'></button>
       <button onClick={()=> camera.current.switchCamera()} className='img'></button>
     </div>
