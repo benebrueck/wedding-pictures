@@ -4,6 +4,7 @@ import { storage } from "./firebase";
 import { ref, uploadBytes} from "firebase/storage";
 import { Camera } from "react-camera-pro";
 import { format } from "date-fns"
+import { wait } from '@testing-library/user-event/dist/utils';
 
 const Component = () => {
   function base64ToFile(base64String, fileName) {
@@ -31,27 +32,30 @@ const Component = () => {
 
   const camera = useRef(null);
   const [image, setImage] = useState(null);
+  const [numberOfCameras, setNumberOfCameras] = useState(0);
 
   const uploadImage = () =>{
-    // if (image==null) return;
-    setImage(camera.current.takePhoto())
-
-    alert("Foto gemacht!")
-    // Speicherort
+    if (camera.current){
+      setImage(camera.current.takePhoto())
     
-    const time = format(new Date(),'yyMMddhhmmss')
-    
-    const rand = Math.floor(1000 + 9000 * Math.random());
-    const fileend = ".jpeg"
-    const imageRef = ref(storage,`test1/${ time + rand + fileend}`);
-    uploadBytes(imageRef,base64ToFile(image,"bild"))
+      if (image==null) {
+        alert("Kein Bild wurde gemacht\nversuche es gleich nochmal!😊")
+        return
+      }
+      // Speicherort
+      const time = format(new Date(),'yyMMddhhmmss')
+      const rand = Math.floor(1000 + 9000 * Math.random());
+      const fileend = ".jpeg"
+      const imageRef = ref(storage,`test1/${ time + rand + fileend}`);
+      uploadBytes(imageRef,base64ToFile(image,"bild"))
+    }
   }
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={9/16}/>
+      <Camera ref={camera} aspectRatio={9/16} facingMode='environment' numberOfCamerasCallback={setNumberOfCameras}/>
       <button onClick={uploadImage} className='dot'></button>
-      <button onClick={()=> camera.current.switchCamera()} className='img'></button>
+      <button hidden = {numberOfCameras<=1} onClick={()=> camera.current.switchCamera()} className='img'></button>
     </div>
   );
 }
