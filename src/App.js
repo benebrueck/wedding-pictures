@@ -37,27 +37,27 @@ const Component = () => {
   const uploadImage = () =>{
     if (camera.current){
       setImage(camera.current.takePhoto())
-    
-      if (image==null) {
-        alert("Kein Bild wurde gemacht\nversuche es gleich nochmal!😊")
-        return
-      }
-      // Speicherort
-      const time = format(new Date(),'yyMMddhhmmss')
-      const rand = Math.floor(1000 + 9000 * Math.random());
-      const fileend = ".jpeg"
-      const imageRef = ref(storage,`test1/${ time + rand + fileend}`);
-      uploadBytes(imageRef,base64ToFile(image,"bild"))
     }
+
+    if (image=null) {
+      alert("Kein Bild wurde gemacht\nversuche es gleich nochmal!🥹")
+      return
+    }
+    // Speicherort
+    const time = format(new Date(),'yyMMddhhmmss')
+    const rand = Math.floor(1000 + 9000 * Math.random());
+    const fileend = ".jpeg"
+    const imageRef = ref(storage,`test1/${time+rand+fileend}`);
+    uploadBytes(imageRef,base64ToFile(image,"bild"))
   }
 
   return (
     <div>
       <Camera ref={camera} aspectRatio={9/16} facingMode='environment' numberOfCamerasCallback={setNumberOfCameras}/>
-      <button onClick={uploadImage} className='dot'></button>
+      <button className='dot' onClick={uploadImage}></button>
       <button hidden = {numberOfCameras<=1} onClick={()=> camera.current.switchCamera()} className='img'></button>
     </div>
   );
 }
 
-export default Component;  
+export default Component;
