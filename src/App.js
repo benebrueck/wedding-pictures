@@ -1,10 +1,9 @@
 import './App.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import { storage } from "./firebase";
 import { ref, uploadBytes} from "firebase/storage";
-import { Camera } from "react-camera-pro";
+import { Camera} from "react-camera-pro";
 import { format } from "date-fns"
-import { wait } from '@testing-library/user-event/dist/utils';
 
 const Component = () => {
   function base64ToFile(base64String, fileName) {
@@ -33,29 +32,28 @@ const Component = () => {
   const camera = useRef(null);
   const [image, setImage] = useState(null);
   const [numberOfCameras, setNumberOfCameras] = useState(0);
+  const [imagetaken, setImagetaken] = useState(false)
+  const [ready,setReady] = useState(false);
 
   const uploadImage = () =>{
     if (camera.current){
-      setImage(camera.current.takePhoto())
+      const foto = camera.current.takePhoto();
+      setImage(foto);
+      setImagetaken(true);
+      // Speicherort
+      const filename = format(new Date(),'yy.MM.dd hh:mm:ss:SSS') + ".jpeg"
+      const imageRef = ref(storage,`test1/${filename}`);
+      uploadBytes(imageRef,base64ToFile(foto,"bild"));
     }
-
-    if (image=null) {
-      alert("Kein Bild wurde gemacht\nversuche es gleich nochmal!🥹")
-      return
-    }
-    // Speicherort
-    const time = format(new Date(),'yyMMddhhmmss')
-    const rand = Math.floor(1000 + 9000 * Math.random());
-    const fileend = ".jpeg"
-    const imageRef = ref(storage,`test1/${time+rand+fileend}`);
-    uploadBytes(imageRef,base64ToFile(image,"bild"))
   }
 
   return (
     <div>
-      <Camera ref={camera} aspectRatio={9/16} facingMode='environment' numberOfCamerasCallback={setNumberOfCameras}/>
+      <Camera ref={camera} facingMode='environment' numberOfCamerasCallback={setNumberOfCameras}/>
       <button className='dot' onClick={uploadImage}></button>
-      <button hidden = {numberOfCameras<=1} onClick={()=> camera.current.switchCamera()} className='img'></button>
+      <button hidden = {numberOfCameras<=1} onClick={()=> camera.current.switchCamera()} className='switch'></button>
+      <img hidden={imagetaken==false} className="photo" src={image} alt="Foto"></img>
+      <a hidden = {true} href="https://www.flaticon.com/de/kostenlose-icons/hochzeit" title="hochzeit Icons">Hochzeit Icons erstellt von xnimrodx - Flaticon</a>
     </div>
   );
 }

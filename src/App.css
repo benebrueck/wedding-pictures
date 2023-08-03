@@ -1,26 +1,20 @@
 .App {
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   background-color: #282c34;
-
+  border: none;
 }
+
 html, body, #app, #app>div {
-  height: 100%
+  height: 100%;
+  width: 100vw;
+  border: none;
 }
 
 body{
   background-color: #282c34;
   overflow: hidden;
-}
-.Container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0 10px;
 }
 
 .container {
@@ -33,18 +27,24 @@ body{
 /* Stil für den weißen Punkt */
 .dot {
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background-color: white;
   border-radius: 50%;
   border: none;
   cursor: pointer;
 }
 
-.img {
+.a {
+  color: #565454;
+  position: absolute;
+  bottom: 0px;
+}
+
+.switch {
   position: absolute;
   bottom: 15px;
   left: 14%;
@@ -56,47 +56,13 @@ body{
   cursor: pointer;
 }
 
-button {
-  background-color: crimson;
-  color: #fff;
-  margin-top: 10px;
-  padding: 10px 40px;
+.photo {
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 80px;
   border: none;
-  border-radius: 25px;
   cursor: pointer;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
